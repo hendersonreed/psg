@@ -4,12 +4,12 @@ This is my bare minumum site generator.
 
 Features:
 
-- uses pandoc to infer input format and produce HTML output.
+- uses pandoc to infer input format and produce HTML output (only converts markdown by default.)
 - no templating, just smashes the generated html fragment between user-provided header and footer fragments.
 - tiny and simple codebase, straightforward to extend as needed.
 
 
-```shell
+```
 reed@mercury => cloc psg.py
        1 text file.
        1 unique file.
@@ -25,7 +25,7 @@ Python                           1             26             33             77
 
 77 lines of Python (using just the included batteries), with one dependency (Pandoc).
 
-```shell
+```
 reed@mercury => psg.py help
 
 usage: psg [command]
@@ -49,7 +49,7 @@ psg will convert any markdown files in the `src` directory into HTML, using pand
 
 ### installing dependencies
 
-1. `psg` has only been tested with Python 3.11.4 and newer.
+1. `psg` has only been tested with Python 3.11.4 at this time.
 2. Ensure you have pandoc installed. You can do so with the following:
 
 #### debian-based distros:
