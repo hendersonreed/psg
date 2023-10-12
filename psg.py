@@ -13,7 +13,7 @@ usage: psg [command]
 
 commands:
     build - converts the site source stored in the `src` directory, and places it in the `docs` directory.
-    serve - builds the the docs directory and launches Python's builtin server to serve the docs directory.
+    serve - builds the docs directory and launches Python's builtin server to serve the docs directory.
     clean - deletes the docs directory.
     help - display this message.
 
