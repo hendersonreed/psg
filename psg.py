@@ -93,10 +93,10 @@ def build():
 
     for root, dirs, files in os.walk(source_directory):
         for directory in dirs:
-            source_dir = os.path.join(root, directory)
+            dir_to_copy = os.path.join(root, directory)
             dest_dir = os.path.join(
                     destination_directory,
-                    os.path.relpath(source_dir, source_directory))
+                    os.path.relpath(dir_to_copy, source_directory))
             os.makedirs(dest_dir, exist_ok=True)
 
         for file in files:
