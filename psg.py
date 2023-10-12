@@ -57,8 +57,6 @@ if not os.path.isdir("src"):
 
 
 def convert_to_markdown(src, dest):
-    # print(f"would have converted {src}")
-    # shutil.copy(src, dest)
     pandoc_execution = subprocess.run([
         "pandoc",
         "--from",
