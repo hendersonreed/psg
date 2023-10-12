@@ -6,7 +6,6 @@ import shutil
 import subprocess
 import http.server
 import socketserver
-import pathlib
 
 
 help = """
