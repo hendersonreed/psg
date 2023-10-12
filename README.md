@@ -4,7 +4,7 @@ This is my bare minumum site generator.
 
 Features:
 
-- uses pandoc to infer input format and produce HTML output (only converts markdown by default.)
+- uses pandoc to infer input format and produce HTML output.
 - no templating, just smashes the generated html fragment between user-provided header and footer fragments.
 - tiny and simple codebase, straightforward to extend as needed.
 
