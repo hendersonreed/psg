@@ -71,10 +71,18 @@ def convert_to_markdown(src, dest):
     out_html = (header_html + "\n" +
                 pandoc_execution.stdout + "\n" +
                 footer_html)
-    dest = dest.replace('.md', '.html')
 
     with open(dest, "w") as file:
         file.write(out_html)
+
+
+def needs_updating(source_path, dest_path):
+    # Check if the built file doesn't exist
+    if not os.path.exists(dest_path):
+        return True
+
+    # Compare the modification times of the source and built files
+    return os.path.getmtime(source_path) > os.path.getmtime(dest_path)
 
 
 def build():
@@ -102,13 +110,16 @@ def build():
             dest_path = os.path.join(
                     destination_directory,
                     os.path.relpath(source_path, source_directory))
+            dest_path = dest_path.replace('.md', '.html')
 
-            if file.endswith(".md"):
-                # Handle Markdown files differently
-                convert_to_markdown(source_path, dest_path)
-            else:
-                # Copy non-Markdown files
-                shutil.copy(source_path, dest_path)
+            # checks if the file at dest_path needs updating or creation
+            if needs_updating(source_path, dest_path):
+                if file.endswith(".md"):
+                    # Handle Markdown files differently
+                    convert_to_markdown(source_path, dest_path)
+                else:
+                    # Copy non-Markdown files
+                    shutil.copy(source_path, dest_path)
 
 
 def serve():
