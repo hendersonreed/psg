@@ -106,15 +106,15 @@ def build():
         for directory in dirs:
             dir_to_copy = os.path.join(root, directory)
             dest_dir = os.path.join(
-                    destination_directory,
-                    os.path.relpath(dir_to_copy, source_directory))
+                destination_directory,
+                os.path.relpath(dir_to_copy, source_directory))
             os.makedirs(dest_dir, exist_ok=True)
 
         for file in files:
             source_path = os.path.join(root, file)
             dest_path = os.path.join(
-                    destination_directory,
-                    os.path.relpath(source_path, source_directory))
+                destination_directory,
+                os.path.relpath(source_path, source_directory))
             dest_path = dest_path.replace('.md', '.html')
 
             # checks if the file at dest_path needs updating or creation
