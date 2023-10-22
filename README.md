@@ -19,11 +19,11 @@ github.com/AlDanial/cloc v 1.90  T=0.01 s (67.9 files/s, 9234.1 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
-Python                           1             26             33             77
+Python                           1             26             33             80
 -------------------------------------------------------------------------------
 ```
 
-77 lines of Python (using just the included batteries), with one dependency (Pandoc).
+80 lines of Python (using just the included batteries), with one dependency (Pandoc).
 
 ```
 reed@mercury => psg.py help
