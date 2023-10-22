@@ -81,8 +81,13 @@ def needs_updating(source_path, dest_path):
     if not os.path.exists(dest_path):
         return True
 
-    # Compare the modification times of the source and built files
-    return os.path.getmtime(source_path) > os.path.getmtime(dest_path)
+    # Compare the modification times of the source and built files, as
+    # well as the header.html and footer.html
+    return (os.path.getmtime(source_path) > os.path.getmtime(dest_path)
+            or
+            os.path.getmtime("header.html") > os.path.getmtime(source_path)
+            or
+            os.path.getmtime("footer.html") > os.path.getmtime(source_path))
 
 
 def build():
