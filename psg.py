@@ -87,12 +87,15 @@ def needs_updating(source_path, dest_path):
         return True
 
     # Compare the modification times of the source and built files, as
-    # well as the header.html and footer.html
+    # well as the header.html and footer.html. The check for the header/footer_html
+    # is guarded by a check that the file is markdown, because if not it doesn't matter.
     return (os.path.getmtime(source_path) > os.path.getmtime(dest_path)
             or
-            os.path.getmtime("header.html") > os.path.getmtime(source_path)
+            (source_path.endswith(".md") and
+             os.path.getmtime("header.html") > os.path.getmtime(dest_path))
             or
-            os.path.getmtime("footer.html") > os.path.getmtime(source_path))
+            (source_path.endswith(".md") and
+             os.path.getmtime("footer.html") > os.path.getmtime(dest_path)))
 
 
 def build():
@@ -126,10 +129,16 @@ def build():
             if needs_updating(source_path, dest_path):
                 if file.endswith(".md"):
                     # Handle Markdown files differently
+                    print(f"converting {source_path}")
                     convert_to_markdown(source_path, dest_path)
                 else:
                     # Copy non-Markdown files
+                    print(f"copying {source_path} to destination")
                     shutil.copy(source_path, dest_path)
+                    # update the timestamp on copied files so that they
+                    # aren't always getting rebuilt.
+                    current_time = time.time()
+                    os.utime(dest_path, (current_time, current_time))
 
 
 def serve():
