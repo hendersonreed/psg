@@ -1,11 +1,13 @@
 #!/bin/env python3
 
-import sys
+import http.server
 import os
 import shutil
-import subprocess
-import http.server
 import socketserver
+import subprocess
+import sys
+import textwrap
+import time
 
 
 help = """
@@ -67,6 +69,9 @@ def convert_to_markdown(src, dest):
         capture_output=True,
         text=True)
     if pandoc_execution.stderr != "":
+        print("psg: pandoc error found. Printing pandoc stderr below:\n")
+        print(textwrap.indent(pandoc_execution.stderr, '\t'))
+        print("psg: exiting now, built site may be incomplete")
         sys.exit(1)
     out_html = (header_html + "\n" +
                 pandoc_execution.stdout + "\n" +
