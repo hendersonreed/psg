@@ -64,6 +64,11 @@ sudo apt-get install pandoc
 sudo dnf install pandoc
 ```
 
+#### MacOS:
+```shell
+brew install pandoc
+```
+
 ### downloading psg
 
 It's as simple as can be.
